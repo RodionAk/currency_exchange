@@ -1,11 +1,7 @@
 
 
-var object = {
 
-};
-
-
-module.exports = function makeExchange(cost) {
+module.exports = function makeExchange(currency) {
     // Your code goes here!
     // Return an object containing the minimum number of coins needed to make change
     let half = 50;
@@ -14,65 +10,75 @@ module.exports = function makeExchange(cost) {
     let nickel=5;
     let penny=1;
     
-    console.log(`Before to go to half ${cost}`);
+    console.log(`Before to go to half ${currency}`);
     
-    if (cost > 10000)
-    return Error;
+    if (currency > 10000)
+
+   return {'error': "You are rich, my friend! We don't have so much coins for exchange"};
     
-    if (cost == 0)
+    if (currency == 0)
     return object;
 
+        
+    if (currency < 0)
+    return Error;
 
-    if (cost>=half)
+
+
+    if (currency>=half)
     {
-    half = Math.floor(cost / half);
+    half = Math.floor(currency / half);
+    var object = {};
     object["H"]= half;
     
     //console.log(`Now,half is ${half}`);
     
-    cost = cost % 50;
-    console.log(`Before to go to quarter ${cost}`);
-  
+    currency = currency % 50;
+    console.log(`Before to go to quarter ${currency}`);
+     
     }
+
+
     
     
-  if(cost>=quarter)
+  if(currency>=quarter)
     {
-    quarter = Math.floor(cost / quarter);
+    quarter = Math.floor(currency / quarter);
     object["Q"] = quarter;
     console.log(`Now,quarter is ${quarter} `);
     
-    cost=cost%25;
-    console.log(`Before to go to dime ${cost}`);
+    currency=currency%25;
+    console.log(`Before to go to dime ${currency}`);
     }
     
     
-    if(cost>=dime)
+    if(currency>=dime)
     {
-    dime = Math.floor(cost / dime);
+    dime = Math.floor(currency / dime);
     object["D"] = dime;
     console.log(`Now,dime is ${dime} `);
     
-    cost=cost%10;
-    console.log(`Before to go to nickel ${cost}`);
+    currency=currency%10;
+    console.log(`Before to go to nickel ${currency}`);
     }
     
-    if(cost>=nickel)
+    if(currency>=nickel)
     {
-    nickel = Math.floor(cost / nickel);
+    nickel = Math.floor(currency / nickel);
     object["N"] = nickel;
     console.log(`Now,dime is ${nickel} `);
     
-    cost=cost%5;
-    console.log(`Before to go to nickel ${cost}`);
+    currency=currency%5;
+    console.log(`Before to go to nickel ${currency}`);
     }
     
-    if(cost>=penny)
+    if(currency>=penny)
     {
-    penny = Math.floor(cost / penny);
+    penny = Math.floor(currency / penny);
     object["P"] = penny;
     console.log(`Now,penny is ${penny} `);
     
     }
-
+  
+    return object;
 }
